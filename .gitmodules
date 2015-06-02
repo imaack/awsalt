@@ -1,0 +1,6 @@
+[submodule "salt/formulas/nginx-formula"]
+	path = salt/formulas/nginx-formula
+	url = https://github.com/saltstack-formulas/nginx-formula.git
+[submodule "salt/formulas/mysql-formula"]
+	path = salt/formulas/mysql-formula
+	url = https://github.com/saltstack-formulas/mysql-formula.git
