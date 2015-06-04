@@ -1,7 +1,7 @@
 ---
 
 include:
-  - nginx
+  - nginx.ng
 
 
 
