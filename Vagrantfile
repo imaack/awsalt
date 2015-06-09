@@ -8,7 +8,7 @@
 
 Vagrant.configure(2) do |config|
 
-  config.vm.box = "geerlingguy/centos7"
+  config.vm.box = "ubuntu/precise64"
 
 
   # Create a forwarded port mapping which allows access to a specific port
@@ -32,6 +32,10 @@ Vagrant.configure(2) do |config|
 
   ## For masterless, mount your salt file root
   config.vm.synced_folder "salt", "/srv/salt/"
+
+  ## For masterless, mount your salt file root
+  config.vm.synced_folder "saltpillar", "/srv/pillar/"
+
 
   ## Set your salt configs here
   config.vm.provision :salt do |salt|
