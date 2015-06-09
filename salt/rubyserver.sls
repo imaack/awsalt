@@ -1,11 +1,11 @@
----
-rvm:
-  group.present: []
+run-as-user-present:
+  group.present:
+    - name: {{ pillar['run-as-user'] }}
   user.present:
-    - gid: rvm
-    - home: /home/rvm
+    - name: {{ pillar['run-as-user'] }}
+    - home: /home/{{ pillar['run-as-user'] }}
     - require:
-      - group: rvm
+      - group: {{ pillar['run-as-group'] }}
 
 rvm-deps:
   pkg.installed:
@@ -57,44 +57,41 @@ jruby-deps:
       - g++
       - openjdk-6-jre-headless
 
-ruby-2.2:
+ruby-2.2.1:
   rvm.installed:
     - default: True
-    - user: rvm
+    - user: {{ pillar['run-as-user'] }}
     - require:
       - pkg: rvm-deps
       - pkg: mri-deps
-      - user: rvm
+      - user: {{ pillar['run-as-user'] }}
 
-jruby:
-  rvm.installed:
-    - user: rvm
-    - require:
-      - pkg: rvm-deps
-      - pkg: jruby-deps
-      - user: rvm
+#jruby:
+#  rvm.installed:
+#    - user: {{ pillar['run-as-user'] }}
+#    - require:
+#      - pkg: rvm-deps
+#      - pkg: jruby-deps
+#      - user: {{ pillar['run-as-user'] }}
 
-jgemset:
-  rvm.gemset_present:
-    - ruby: jruby
-    - user: rvm
-    - require:
-      - rvm: jruby
+#jgemset:
+#  rvm.gemset_present:
+#    - ruby: jruby
+#    - user: {{ pillar['run-as-user'] }}
+#    - require:
+#      - rvm: jruby
 
 mygemset:
   rvm.gemset_present:
-    - ruby: ruby-2.2
-    - user: rvm
+    - ruby: ruby-2.2.1
+    - user: {{ pillar['run-as-user'] }}
     - require:
-      - rvm: ruby-2.2
-
-
-
-
+      - rvm: ruby-2.2.1
+      
 gpg-import-rvm-key:
     cmd.run:
-        - user: rvm
+        - user: {{ pillar['run-as-user'] }}
         - require:
-            - user: rvm
-        - name: gpg --keyserver hkp://keys.gnupg.net:80 --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
+            - user: {{ pillar['run-as-user'] }}
+        - name: gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
         - unless: gpg --fingerprint |fgrep 'Key fingerprint = 409B 6B17 96C2 7546 2A17  0311 3804 BB82 D39D C0E3'
