@@ -1,3 +1,4 @@
 base:
   '*':
     - rubyserver
+    - passenger
