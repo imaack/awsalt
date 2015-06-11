@@ -19,8 +19,6 @@ rvm-deps:
       - curl
       - git-core
       - subversion
-  require:
-    - cmd: gpg-import-rvm-key
 
 
 mri-deps:
@@ -65,6 +63,7 @@ ruby-2.2.1:
       - pkg: rvm-deps
       - pkg: mri-deps
       - user: {{ pillar['run-as-user'] }}
+      - cmd: gpg-import-rvm-key
 
 #jruby:
 #  rvm.installed:
