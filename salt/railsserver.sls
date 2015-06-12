@@ -53,4 +53,6 @@ nginx-and-passenger-installed:
     - user: {{ pillar['run-as-user'] }}
     - group: {{ pillar['run-as-group'] }}
 
-
+rails:
+  gem.installed:
+    - user: {{ pillar['run-as-user'] }}
