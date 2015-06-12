@@ -8,7 +8,7 @@
 
 Vagrant.configure(2) do |config|
 
-  config.vm.box = "ubuntu/precise64"
+  config.vm.box = "geerlingguy/centos7"
 
 
   # Create a forwarded port mapping which allows access to a specific port
