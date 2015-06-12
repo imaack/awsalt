@@ -57,3 +57,12 @@ webapp-directory-exists:
 rails:
   gem.installed:
     - user: {{ pillar['run-as-user'] }}
+
+nginx:
+  service.running:
+    - enable: True
+    - require:
+      - file: /etc/nginx/nginx.conf
+      - file: /etc/nginx/conf.d/passenger.conf
+      - file: webapp-directory-exists
+      
