@@ -24,7 +24,7 @@ Vagrant.configure(2) do |config|
 
 
   ## mount root folder
-  config.vm.synced_folder "./", "/srv/webapp", id: "vagrant-root",
+  config.vm.synced_folder "testapp", "/srv/webapp", id: "vagrant-root",
        owner: "vagrant",
        group: "vagrant",
        mount_options: ["dmode=775,fmode=664"]
