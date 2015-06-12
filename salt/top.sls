@@ -1,4 +1,4 @@
 base:
   '*':
-    #- rubyserver
+    - rubyserver
     - railsserver
