@@ -47,9 +47,10 @@ nginx-and-passenger-installed:
       - pkg: nginx-and-passenger-installed
 
     
-    
-/srv/webapp/public:
-  file.managed:
+webapp-directory-exists:
+  file.directory:
+    - name: {{ pillar['app-location'] }}
+    - makedirs: True
     - user: {{ pillar['run-as-user'] }}
     - group: {{ pillar['run-as-group'] }}
 
