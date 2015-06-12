@@ -7,7 +7,6 @@ add-passenger-repo:
     - require_in:
       - pkg: nginx-and-passenger-installed
 
-
 passenger-deps:
   pkg.installed:
     - pkgs:
@@ -16,7 +15,6 @@ passenger-deps:
       - curl
       - nodejs
 
-
 nginx-and-passenger-installed:
   pkg.installed:
     - pkgs:
@@ -24,3 +22,30 @@ nginx-and-passenger-installed:
       - passenger
     - require:
       - pkg: passenger-deps
+
+
+/etc/nginx/nginx.conf:
+  file.managed:
+    - template: jinja
+    - source:
+      - salt://config/nginx.conf
+    - user: root
+    - group: root
+    - mode: 644
+
+/etc/nginx/conf.d/passenger.conf:
+  file.managed:
+    - template: jinja
+    - source:
+      - salt://config/passenger.conf
+    - user: root
+    - group: root
+    - mode: 644
+    
+    
+/srv/webapp/public:
+  file.managed:
+    - user: {{ pillar['run-as-user'] }}
+    - group: {{ pillar['run-as-group'] }}
+
+
