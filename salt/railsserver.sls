@@ -32,6 +32,8 @@ nginx-and-passenger-installed:
     - user: root
     - group: root
     - mode: 644
+    - require:
+      - pkg: nginx-and-passenger-installed
 
 /etc/nginx/conf.d/passenger.conf:
   file.managed:
@@ -41,6 +43,9 @@ nginx-and-passenger-installed:
     - user: root
     - group: root
     - mode: 644
+    - require:
+      - pkg: nginx-and-passenger-installed
+
     
     
 /srv/webapp/public:
