@@ -8,8 +8,8 @@
 
 Vagrant.configure(2) do |config|
 
-  config.vm.box = "geerlingguy/centos7"
-
+  config.vm.box = "matthardcastle/centos-6-minimal-salt"
+  
 
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
