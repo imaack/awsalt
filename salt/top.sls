@@ -2,3 +2,4 @@ base:
   '*':
     - rubyserver
     - railsserver
+    - dbserver
