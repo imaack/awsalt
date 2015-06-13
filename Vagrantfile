@@ -36,6 +36,12 @@ Vagrant.configure(2) do |config|
   ## For masterless, mount your salt file root
   config.vm.synced_folder "saltpillar", "/srv/pillar/"
 
+  
+  ## Fix Vagrant box not configuring vagrant sudo priveleges properly
+   Vagrant.configure("2") do |config|
+     config.vm.provision "shell",
+                         inline: "echo 'vagrant ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers"
+   end
 
   ## Set your salt configs here
   config.vm.provision :salt do |salt|
