@@ -57,6 +57,8 @@ webapp-directory-exists:
 rails:
   gem.installed:
     - user: {{ pillar['run-as-user'] }}
+    - require:
+      - rvm: ruby-2.2.1
 
 nginx:
   service.running:
