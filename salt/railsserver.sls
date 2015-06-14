@@ -54,11 +54,19 @@ webapp-directory-exists:
     - user: {{ pillar['run-as-user'] }}
     - group: {{ pillar['run-as-group'] }}
 
+
 rails:
   gem.installed:
     - user: {{ pillar['run-as-user'] }}
     - require:
       - rvm: ruby-2.2.1
+
+mysql2:
+  gem.installed:
+    - user: {{ pillar['run-as-user'] }}
+    - require:
+      - rvm: ruby-2.2.1
+      - pkg: mysql-devel
 
 nginx:
   service.running:
