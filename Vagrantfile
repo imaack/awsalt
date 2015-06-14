@@ -38,10 +38,7 @@ Vagrant.configure(2) do |config|
 
   
   ## Fix Vagrant box not configuring vagrant sudo priveleges properly
-   Vagrant.configure("2") do |config|
-     config.vm.provision "shell",
-                         inline: "echo 'vagrant ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers"
-   end
+  config.vm.provision "shell", inline: "echo 'vagrant ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers"
 
   ## Set your salt configs here
   config.vm.provision :salt do |salt|
